@@ -2,8 +2,22 @@ import Head from "next/head";
 import Image from "next/image";
 import { HeadContent } from "@/components/HeadContent";
 import { ProjectList } from "@/components/ProjectList";
+import { CookieBanner } from "@/components/CookieBanner";
+import { GetStaticProps } from "next";
 
-export default function Home() {
+type Props = {
+    githubRedirectOauth: string;
+};
+
+export const getStaticProps: GetStaticProps<Props> = async () => {
+    return {
+        props: {
+            githubRedirectOauth: process.env.GITHUB_REDIRECT_OAUTH ?? "",
+        },
+    };
+};
+
+export default function Home(context: Props) {
     return (
         <>
             <Head>{...HeadContent}</Head>
@@ -12,6 +26,7 @@ export default function Home() {
                 <h1>Galactic Unicorn</h1>
                 <p>Create blazingly fast websites without any programming knowledge</p>
                 <Image
+                    priority
                     className="hero__image"
                     src="/preview.png"
                     alt=""
@@ -20,9 +35,9 @@ export default function Home() {
                 />
             </div>
 
-            <div>
-                <ProjectList />
-            </div>
+            <CookieBanner />
+
+            <ProjectList githubRedirectOauth={context.githubRedirectOauth} />
         </>
     );
 }

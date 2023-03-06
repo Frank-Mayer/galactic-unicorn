@@ -1,4 +1,7 @@
+@use "theme";
 @use "hero";
+@use "cookie-banner";
+@use "project-list";
 
 *,
 *::before,
@@ -11,7 +14,13 @@
 }
 
 :root {
-  background-color: rgb(30, 30, 30);
-  color: white;
+  background-color: theme.$background;
+  color: theme.$foreground;
   font-family: "Roboto", sans-serif;
+}
+
+#__next {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 0.5rem;
 }

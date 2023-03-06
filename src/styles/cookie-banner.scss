@@ -1,0 +1,15 @@
+@use "theme";
+
+.cookie-banner {
+  display: grid;
+  grid-gap: 0.5rem;
+  justify-items: end;
+  border: 1px solid theme.$secondary;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  margin: 1rem 0;
+
+  &__button {
+    @include theme.button;
+  }
+}

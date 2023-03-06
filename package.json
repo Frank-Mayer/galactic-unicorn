@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@frank-mayer/opsult": "^2.4.0",
+    "@frank-mayer/panic": "^1.0.2",
     "cookies-next": "^2.1.1",
     "next": "13.2.3",
     "octokit": "^2.0.14",

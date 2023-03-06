@@ -7,15 +7,11 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     if (
         !code ||
         typeof code != "string" ||
-        !state ||
-        typeof state != "string" ||
-        !state.startsWith("unicorn")
+        (state && typeof state == "string" && !state.startsWith("unicorn"))
     ) {
         res.status(400).send("Bad request");
         return;
     }
-
-    // POST https://github.com/login/oauth/access_token
 
     const data = {
         client_id: process.env.GITHUB_CLIENT_ID,

@@ -1,0 +1,25 @@
+$background: rgb(30, 30, 30);
+$foreground: #ffffff;
+$secondary: hsl(0, 0%, 75%);
+$timing: 0.2s;
+
+// button
+@mixin button {
+  background-color: $background;
+  border: 1px solid $secondary;
+  border-radius: 0.5rem;
+  color: $foreground;
+  cursor: pointer;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  text-decoration: none;
+  margin: 0.25rem 0;
+  display: block;
+  max-width: max-content;
+  will-change: box-shadow;
+  transition: box-shadow $timing ease-out;
+
+  &:hover {
+    box-shadow: inset 0 0 10px $secondary;
+  }
+}

@@ -1,0 +1,7 @@
+@use "theme";
+
+.project-list {
+  &__button {
+    @include theme.button;
+  }
+}
