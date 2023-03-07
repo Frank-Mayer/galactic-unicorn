@@ -4,4 +4,23 @@
   &__button {
     @include theme.button;
   }
+
+  &__form {
+    label {
+      font-size: 0.75rem;
+      display: block;
+      width: fit-content;
+      border: 1px solid theme.$secondary;
+      border-radius: 0.5rem;
+      padding: 0.4rem 0.75rem 0.5rem 0.75rem;
+      color: theme.$secondary;
+
+      input {
+        display: block;
+        font-size: 1rem;
+        background-color: transparent;
+        color: theme.$foreground;
+      }
+    }
+  }
 }

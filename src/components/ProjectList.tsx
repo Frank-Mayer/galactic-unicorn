@@ -1,4 +1,5 @@
-import { useOctokit, newProjectAsync } from "@/utils/github";
+import { getRandomProjectName } from "@/utils/getRandomProjectName";
+import { useOctokit } from "@/utils/github";
 import { panic } from "@frank-mayer/panic";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -36,6 +37,34 @@ export const ProjectList = (props: Props) => {
     return octokit ? (
         <div className="project-list">
             <h2>Your Projects</h2>
+
+            <h3>New Project</h3>
+            <form
+                className="project-list__form"
+                action="/api/gh/new_project"
+                method="get"
+            >
+                <label>
+                    New project name:
+                    <input type="text" name="name" value={getRandomProjectName()} />
+                </label>
+                <input className="project-list__button" type="submit" value="Create" />
+            </form>
+
+            <br />
+
+            <h3>Settings</h3>
+            <Link
+                className="project-list__button"
+                href="https://github.com/apps/galactic-unicorn-gh"
+                target="_blank"
+            >
+                Configure GitHub App
+            </Link>
+
+            <br />
+
+            <h3>Existing Projects</h3>
             <ul>
                 {projects.map((project) => {
                     const url = new URL("/edit", window.location.href);
@@ -47,16 +76,6 @@ export const ProjectList = (props: Props) => {
                     );
                 })}
             </ul>
-            <button onClick={newProjectAsync} className="project-list__button">
-                New project
-            </button>
-            <Link
-                className="project-list__button"
-                href="https://github.com/apps/galactic-unicorn-gh"
-                target="_blank"
-            >
-                Configure GitHub App
-            </Link>
         </div>
     ) : (
         <div className="project-list">
