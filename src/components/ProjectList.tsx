@@ -39,17 +39,7 @@ export const ProjectList = (props: Props) => {
             <h2>Your Projects</h2>
 
             <h3>New Project</h3>
-            <form
-                className="project-list__form"
-                action="/api/gh/new_project"
-                method="get"
-            >
-                <label>
-                    New project name:
-                    <input type="text" name="name" value={getRandomProjectName()} />
-                </label>
-                <input className="project-list__button" type="submit" value="Create" />
-            </form>
+            <NewProjectForm />
 
             <br />
 
@@ -85,5 +75,30 @@ export const ProjectList = (props: Props) => {
                 Sign in
             </a>
         </div>
+    );
+};
+
+const NewProjectForm = () => {
+    const [projectName, setProjectName] = useState(getRandomProjectName());
+
+    return (
+        <form
+            className="project-list__form"
+            action="/api/gh/new_project"
+            method="get"
+        >
+            <label>
+                New project name (use lowercase letters and dashes only)
+                <input
+                    type="text"
+                    name="name"
+                    value={projectName}
+                    required
+                    pattern="^[a-z-_]+$"
+                    onChange={(ev) => setProjectName(ev.target.value)}
+                />
+            </label>
+            <input className="project-list__button" type="submit" value="Create" />
+        </form>
     );
 };

@@ -21,6 +21,10 @@
         background-color: transparent;
         color: theme.$foreground;
       }
+
+      &:has(input:invalid) {
+        border-color: red;
+      }
     }
   }
 }
